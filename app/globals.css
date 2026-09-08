@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "@fontsource/bitter/700.css";
+@import "@fontsource/bitter/900.css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+:root {
+  --vinyl: #16110d;
+  --vinyl-groove: #1f1811;
+  --paper: #e9dfc6;
+  --paper-dim: #ddcfab;
+  --ink: #241a10;
+  --ink-soft: #6b5c44;
+  --line: rgba(36, 26, 16, 0.22);
+  --mustard: #c68a2e;
+  --mustard-ink: #4a3210;
+  --stamp-red: #a02f22;
+  --stamp-green: #3d6b3d;
+  --stamp-amber: #a3701a;
+
+  --font-display: "Bitter", serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-data: "IBM Plex Mono", monospace;
+}
+
+body {
+  background: var(--vinyl);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+.bg-groove {
+  background-image: repeating-radial-gradient(
+    circle at 50% -20%,
+    var(--vinyl) 0px,
+    var(--vinyl) 3px,
+    var(--vinyl-groove) 4px
+  );
+}
+
+.paper-grain {
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(36, 26, 16, 0.05) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+.ticket-notch {
+  position: relative;
+  border-top: 2px dashed var(--line);
+}
+
+.ticket-notch::before,
+.ticket-notch::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--vinyl);
+}
+
+.ticket-notch::before {
+  left: -33px;
+}
+
+.ticket-notch::after {
+  right: -33px;
+}
+
+.field-line {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--line);
+  font-family: var(--font-data);
+  color: var(--ink);
+}
+
+.field-line:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+
+@keyframes stamp-in {
+  0% {
+    opacity: 0;
+    transform: rotate(-14deg) scale(1.7);
+  }
+  60% {
+    opacity: 1;
+    transform: rotate(-7deg) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-8deg) scale(1);
+  }
+}
+
+.stamp-anim {
+  animation: stamp-in 0.45s cubic-bezier(0.2, 0.8, 0.3, 1.1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-anim {
+    animation: none;
+    transform: rotate(-8deg);
+  }
+}
